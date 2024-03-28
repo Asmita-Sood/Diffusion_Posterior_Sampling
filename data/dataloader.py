@@ -60,7 +60,28 @@ class FastMriDataset(VisionDataset):
         super().__init__(root, transforms)
 
         self.fpaths = sorted(glob(root + '/**/*.pt', recursive=True))
-        assert len(self.fpaths) > 0, "File list is empty. Check the root."
+        assert len(self.fpaths) > 0, "No .pt files found. Check the root directory."
+        self.convert_to_png()
+
+        self.fpaths = sorted(glob(root + '/**/*.png', recursive=True))
+        assert len(self.fpaths) > 0, "No .png files found after conversion."
+
+    def convert_to_png(self):
+        for fpath in self.fpaths:
+    
+            img = torch.load(fpath)
+
+            
+            img_pil = Image.fromarray(img.numpy())
+
+            
+            if img_pil.mode != 'RGB':
+                img_pil = img_pil.convert('RGB')
+                
+            png_path = os.path.splitext(fpath)[0] + '.png'
+
+            # Save the PIL Image as .png
+            img_pil.save(png_path)
 
     def __len__(self):
         return len(self.fpaths)
