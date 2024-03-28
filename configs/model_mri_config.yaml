@@ -17,5 +17,5 @@ resblock_updown: True
 use_fp16: False
 use_new_attention_order: False
 
-model_path: /content/drive/MyDrive/000000/ffhq_10m.pt #modify
+model_path: /content/Diffusion_Posterior_Sampling/models/network-snapshot-004800 (2).pkl #modify
 # model_path: models/ffhq_10m.pt
