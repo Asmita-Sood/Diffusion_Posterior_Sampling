@@ -55,7 +55,7 @@ class FFHQDataset(VisionDataset):
         return img
 
 @register_dataset(name='fastmri')
-class FFHQDataset(VisionDataset):
+class FastMriDataset(VisionDataset):
     def __init__(self, root: str, transforms: Optional[Callable]=None):
         super().__init__(root, transforms)
 
